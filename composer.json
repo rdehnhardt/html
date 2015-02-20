@@ -10,7 +10,6 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "dev-master",
         "illuminate/html": "dev-master"
     },
     "autoload": {
