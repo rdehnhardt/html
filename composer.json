@@ -1,21 +1,21 @@
 {
-    "name": "rdehnhardt/html",
-    "description": "",
-    "license" : "MIT",
-    "authors": [
-        {
-            "name": "Renato Dehnhardt",
-            "email": "renatotkd@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.4.0",
-        "illuminate/html": "~5.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Rdehnhardt\\Html\\": "src/"
-        }
-    },
-    "minimum-stability": "dev"
+  "name": "rdehnhardt/html",
+  "description": "",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Renato Dehnhardt",
+      "email": "renatotkd@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "laravelcollective/html": "~5.0",
+  },
+  "autoload": {
+    "psr-4": {
+      "Rdehnhardt\\Html\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
 }
