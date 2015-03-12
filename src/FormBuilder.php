@@ -1,6 +1,6 @@
 <?php namespace Rdehnhardt\Html;
 
-use Illuminate\Html\FormBuilder as IlluminateFormBuilder;
+use Collective\Html\FormBuilder as IlluminateFormBuilder;
 
 class FormBuilder extends IlluminateFormBuilder
 {
