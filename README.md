@@ -23,6 +23,7 @@ Add into the file app.php in alias section
 
 Automatically displays error messages to the user. Simply just use the default request validation of laravel.
 
+Any blade file
 ```
 {!! Form::open(['method' => 'post', 'route' => ['route.store']]) !!}
 
