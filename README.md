@@ -1,4 +1,4 @@
-#Laravel HTML with Twitter Boostrap Forms
+#Laravel Forms with Twitter Boostrap
 
 The Twitter-Bootstrap is a simple front-end framework that is used in many web applications.
 
