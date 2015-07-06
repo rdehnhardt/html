@@ -20,6 +20,9 @@ Add into the file app.php in alias section
 ```
 
 #How to use
+
+Automatically displays error messages to the user. Simply just use the default request validation of laravel.
+
 ```
 {!! Form::open(['method' => 'post', 'route' => ['route.store']]) !!}
 
