@@ -9,7 +9,6 @@
     }
   ],
   "require": {
-    "php": ">=5.5.0",
     "laravelcollective/html": "~5.1"
   },
   "autoload": {
