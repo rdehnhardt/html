@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "laravelcollective/html": "~5.1"
+    "laravelcollective/html": "~5.2"
   },
   "autoload": {
     "psr-4": {
