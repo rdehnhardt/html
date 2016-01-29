@@ -12,8 +12,8 @@ class HtmlServiceProvider extends IlluminateHtmlServiceProvider
      */
     protected function registerFormBuilder()
     {
-        $this->app->bindShared('form', function ($app) {
-            $form = new FormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
+        $this->app->bind('form', function ($app) {
+            $form = new FormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->getToken());
 
             return $form->setSessionStore($app['session.store']);
         });
