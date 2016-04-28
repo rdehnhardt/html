@@ -119,6 +119,33 @@ class FormBuilder extends IlluminateFormBuilder
     }
 
     /**
+     * Create a select box field.
+     * @param $name
+     * @param $class
+     * @param array $first
+     * @param array $columns
+     * @param null $selected
+     * @param array $options
+     * @return \Illuminate\Support\HtmlString
+     */
+    public function lookup($name, $class, array $first = [], array $columns = [], $selected = null, $options = array())
+    {
+        $options = $this->appendClassToOptions('form-control', $options);
+        if (!array_key_exists('label', $columns)) {
+            $columns['label'] = 'title';
+        }
+        if (!array_key_exists('value', $columns)) {
+            $columns['value'] = 'id';
+        }
+        $model = new $class;
+        $list = $model->lists($columns['label'], $columns['value']);
+        if (count($first)) {
+            $list = array_merge($first, $list->toArray());
+        }
+        return parent::select($name, $list, $selected, $options);
+    }
+
+    /**
      * Create a plain form input field.
      *
      * @param  string $type
