@@ -10,13 +10,13 @@ composer require rdehnhardt/html
 #Configuration
 Add into the file app.php in providers section 
 ```
-'Rdehnhardt\Html\HtmlServiceProvider',
+Rdehnhardt\Html\HtmlServiceProvider::class,
 ```
 
 Add into the file app.php in alias section 
 ```
-'Form' => 'Collective\Html\FormFacade',
-'Html' => 'Collective\Html\HtmlFacade',
+'Form' => Collective\Html\FormFacade::class,
+'Html' => Collective\Html\HtmlFacade::class,
 ```
 
 #How to use
