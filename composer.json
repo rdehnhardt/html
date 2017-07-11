@@ -16,5 +16,16 @@
       "Rdehnhardt\\Html\\": "src/"
     }
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Rdehnhardt\\Html\\HtmlServiceProvider"
+      ],
+      "aliases": {
+        "Form": "Collective\\Html\\FormFacade",
+        "Html": "Collective\\Html\\HtmlFacade"
+      }
+    }
+  }
 }
