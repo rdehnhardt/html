@@ -1,13 +1,13 @@
-#Laravel Forms with Twitter Boostrap
+# Laravel Forms with Twitter Boostrap
 
 The Twitter-Bootstrap is a simple front-end framework that is used in many web applications.
 
-#Installation
+# Installation
 ```
 composer require rdehnhardt/html
 ```
 
-#Configuration
+# Configuration
 Add into the file app.php in providers section 
 ```
 Rdehnhardt\Html\HtmlServiceProvider::class,
@@ -19,7 +19,7 @@ Add into the file app.php in alias section
 'Html' => Collective\Html\HtmlFacade::class,
 ```
 
-#How to use
+# How to use
 
 Automatically displays error messages to the user. Simply just use the default request validation of laravel.
 
