@@ -1,6 +1,6 @@
 # Laravel Forms with Twitter Boostrap
 
-The Twitter-Bootstrap is a simple front-end framework that is used in many web applications.
+Package to make it easier to create forms in the bootstrap with erros validations.
 
 ##### Ready to Laravel 5.5 - Package Auto-Discovery, but waiting for laravelcollective/html 5.5
 
