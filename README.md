@@ -2,6 +2,8 @@
 
 The Twitter-Bootstrap is a simple front-end framework that is used in many web applications.
 
+##### Ready to Laravel 5.5 - Package Auto-Discovery, but waiting for laravelcollective/html 5.5
+
 # Installation
 ```
 composer require rdehnhardt/html
