@@ -108,15 +108,16 @@ class FormBuilder extends IlluminateFormBuilder
      * @param  string $selected
      * @param array $selectAttributes
      * @param array $optionsAttributes
+     * @param array $optgroupsAttributes
      * @return string
      */
-    public function select($name, $list = [], $selected = null, array $selectAttributes = [], array $optionsAttributes = [])
+    public function select($name, $list = [], $selected = null, array $selectAttributes = [], array $optionsAttributes = [], array $optgroupsAttributes = [])
     {
         $selectAttributes = $this->appendClassToOptions('form-control', $selectAttributes);
 
         // Call the parent select method so that Laravel can handle
         // the rest of the select set up.
-        return parent::select($name, $list, $selected, $selectAttributes, $optionsAttributes);
+        return parent::select($name, $list, $selected, $selectAttributes, $optionsAttributes, $optgroupsAttributes);
     }
 
     /**
