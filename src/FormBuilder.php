@@ -23,17 +23,12 @@ class FormBuilder extends IlluminateFormBuilder
     {
         $options = $this->appendClassToOptions('form-group', $options);
 
-        // Append the name of the group to the groupStack.
         $this->groupStack[] = $name;
 
         if ($this->hasErrors($name)) {
-            // If the form element with the given name has any errors,
-            // apply the 'has-error' class to the group.
             $options = $this->appendClassToOptions('has-error', $options);
         }
 
-        // If a label is given, we set it up here. Otherwise, we will just
-        // set it to an empty string.
         $label = $label ? $this->label($name, $label) : '';
 
         return '<div' . $this->html->attributes($options) . '>' . $label;
@@ -46,14 +41,9 @@ class FormBuilder extends IlluminateFormBuilder
      */
     public function closeGroup()
     {
-        // Get the last added name from the groupStack and
-        // remove it from the array.
         $name = array_pop($this->groupStack);
-
-        // Get the formatted errors for this form group.
         $errors = $this->getFormattedErrors($name);
 
-        // Append the errors to the group and close it out.
         return $errors . '</div>';
     }
 
@@ -95,8 +85,6 @@ class FormBuilder extends IlluminateFormBuilder
             $options = $this->appendClassToOptions('form-control', $options);
         }
 
-        // Call the parent input method so that Laravel can handle
-        // the rest of the input set up.
         return parent::input($type, $name, $value, $options);
     }
 
@@ -115,8 +103,6 @@ class FormBuilder extends IlluminateFormBuilder
     {
         $selectAttributes = $this->appendClassToOptions('form-control', $selectAttributes);
 
-        // Call the parent select method so that Laravel can handle
-        // the rest of the select set up.
         return parent::select($name, $list, $selected, $selectAttributes, $optionsAttributes, $optgroupsAttributes);
     }
 
@@ -306,8 +292,6 @@ class FormBuilder extends IlluminateFormBuilder
      */
     private function appendClassToOptions($class, array $options = array())
     {
-        // If a 'class' is already specified, append the 'form-control'
-        // class to it. Otherwise, set the 'class' to 'form-control'.
         $options['class'] = isset($options['class']) ? $options['class'] . ' ' : '';
         $options['class'] .= $class;
 
@@ -324,18 +308,11 @@ class FormBuilder extends IlluminateFormBuilder
     private function hasErrors($name)
     {
         if (is_null($this->session) || !$this->session->has('errors')) {
-            // If the session is not set, or the session doesn't contain
-            // any errors, the form element does not have any errors
-            // applied to it.
             return false;
         }
 
-        // Get the errors from the session.
         $errors = $this->session->get('errors');
 
-        // Check if the errors contain the form element with the given name.
-        // This leverages Laravel's transformKey method to handle the
-        // formatting of the form element's name.
         return $errors->has($this->transformKey($name));
     }
 
@@ -348,15 +325,11 @@ class FormBuilder extends IlluminateFormBuilder
     private function getFormattedErrors($name)
     {
         if (!$this->hasErrors($name)) {
-            // If the form element does not have any errors, return
-            // an emptry string.
             return '';
         }
 
-        // Get the errors from the session.
         $errors = $this->session->get('errors');
 
-        // Return the formatted error message, if the form element has any.
         return $errors->first($this->transformKey($name), '<p class="help-block">:message</p>');
     }
 
