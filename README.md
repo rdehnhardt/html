@@ -2,12 +2,16 @@
 
 Package to make it easier to create forms in the bootstrap with erros validations.
 
-##### Ready to Laravel 5.5 - Package Auto-Discovery, but waiting for laravelcollective/html 5.5
+##### Ready to Laravel 5.5 - Package Auto-Discovery
 
 # Installation
 ```
 composer require rdehnhardt/html
 ```
+
+#### Bootstrap 3 - 5.6.0
+#### Bootstrap 4 - 5.6.1
+
 
 # Configuration
 Add into the file app.php in providers section 
