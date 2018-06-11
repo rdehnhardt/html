@@ -22,13 +22,7 @@ class FormBuilder extends IlluminateFormBuilder
     public function openGroup($name, $label = null, $options = array())
     {
         $options = $this->appendClassToOptions('form-group', $options);
-
         $this->groupStack[] = $name;
-
-        if ($this->hasErrors($name)) {
-            $options = $this->appendClassToOptions('has-error', $options);
-        }
-
         $label = $label ? $this->label($name, $label) : '';
 
         return '<div' . $this->html->attributes($options) . '>' . $label;
@@ -85,6 +79,10 @@ class FormBuilder extends IlluminateFormBuilder
             $options = $this->appendClassToOptions('form-control', $options);
         }
 
+        if ($this->hasErrors($name)) {
+            $options = $this->appendClassToOptions('is-invalid', $options);
+        }
+
         return parent::input($type, $name, $value, $options);
     }
 
@@ -103,39 +101,11 @@ class FormBuilder extends IlluminateFormBuilder
     {
         $selectAttributes = $this->appendClassToOptions('form-control', $selectAttributes);
 
+        if ($this->hasErrors($name)) {
+            $selectAttributes = $this->appendClassToOptions('is-invalid', $selectAttributes);
+        }
+
         return parent::select($name, $list, $selected, $selectAttributes, $optionsAttributes, $optgroupsAttributes);
-    }
-
-    /**
-     * Create a select box field.
-     * @param $name
-     * @param $class
-     * @param array $first
-     * @param array $columns
-     * @param null $selected
-     * @param array $options
-     * @return \Illuminate\Support\HtmlString
-     */
-    public function lookup($name, $class, array $first = [], array $columns = [], $selected = null, $options = array())
-    {
-        $options = $this->appendClassToOptions('form-control', $options);
-
-        if (!array_key_exists('label', $columns)) {
-            $columns['label'] = 'title';
-        }
-
-        if (!array_key_exists('value', $columns)) {
-            $columns['value'] = 'id';
-        }
-
-        $model = new $class;
-        $list = $model->lists($columns['label'], $columns['value']);
-
-        if (count($first)) {
-            $list = array_merge($first, $list->toArray());
-        }
-
-        return parent::select($name, $list, $selected, $options);
     }
 
     /**
@@ -199,6 +169,10 @@ class FormBuilder extends IlluminateFormBuilder
      */
     public function checkbox($name, $value = 1, $label = null, $checked = null, $options = array())
     {
+        if ($this->hasErrors($name)) {
+            $options = $this->appendClassToOptions('is-invalid', $options);
+        }
+
         $checkable = parent::checkbox($name, $value, $checked, $options);
 
         return $this->wrapCheckable($label, 'checkbox', $checkable);
@@ -216,6 +190,10 @@ class FormBuilder extends IlluminateFormBuilder
      */
     public function radio($name, $value = null, $label = null, $checked = null, $options = array())
     {
+        if ($this->hasErrors($name)) {
+            $options = $this->appendClassToOptions('is-invalid', $options);
+        }
+
         $checkable = parent::radio($name, $value, $checked, $options);
 
         return $this->wrapCheckable($label, 'radio', $checkable);
@@ -233,6 +211,10 @@ class FormBuilder extends IlluminateFormBuilder
      */
     public function inlineCheckbox($name, $value = 1, $label = null, $checked = null, $options = array())
     {
+        if ($this->hasErrors($name)) {
+            $options = $this->appendClassToOptions('is-invalid', $options);
+        }
+
         $checkable = parent::checkbox($name, $value, $checked, $options);
 
         return $this->wrapInlineCheckable($label, 'checkbox', $checkable);
@@ -250,6 +232,10 @@ class FormBuilder extends IlluminateFormBuilder
      */
     public function inlineRadio($name, $value = null, $label = null, $checked = null, $options = array())
     {
+        if ($this->hasErrors($name)) {
+            $options = $this->appendClassToOptions('is-invalid', $options);
+        }
+
         $checkable = parent::radio($name, $value, $checked, $options);
 
         return $this->wrapInlineCheckable($label, 'radio', $checkable);
@@ -266,6 +252,10 @@ class FormBuilder extends IlluminateFormBuilder
     public function textarea($name, $value = null, $options = array())
     {
         $options = $this->appendClassToOptions('form-control', $options);
+
+        if ($this->hasErrors($name)) {
+            $options = $this->appendClassToOptions('is-invalid', $options);
+        }
 
         return parent::textarea($name, $value, $options);
     }
@@ -330,7 +320,7 @@ class FormBuilder extends IlluminateFormBuilder
 
         $errors = $this->session->get('errors');
 
-        return $errors->first($this->transformKey($name), '<p class="help-block">:message</p>');
+        return $errors->first($this->transformKey($name), '<div class="invalid-feedback">:message</div>');
     }
 
     /**
